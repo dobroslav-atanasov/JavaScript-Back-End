@@ -1,7 +1,7 @@
 const url = require('url');
 const fs = require('fs');
 const path = require('path');
-const cats = require('../da/cats');
+const cats = require('../data/cats');
 const breeds = require('../data/breeds');
 
 module.exports = (req, res) => {
