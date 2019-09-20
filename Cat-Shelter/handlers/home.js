@@ -1,8 +1,8 @@
 const url = require('url');
 const fs = require('fs');
 const path = require('path');
-//const cats = require('../data/cats');
-//const breeds = require('../data/breeds');
+const cats = require('../data/cats');
+const breeds = require('../data/breeds');
 
 module.exports = (req, res) => {
     const pathname = url.parse(req.url).pathname;
