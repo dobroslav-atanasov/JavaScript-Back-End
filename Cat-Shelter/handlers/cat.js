@@ -5,7 +5,6 @@ const qs = require('querystring');
 const formidable = require('formidable');
 const breeds = require('../data/breeds');
 const cats = require('../data/cats');
-const mv = require('mv');
 
 module.exports = (req, res) => {
     const pathname = url.parse(req.url).pathname;
@@ -58,7 +57,7 @@ module.exports = (req, res) => {
             let oldpath = files.upload.path + '/' + files.upload.name;
             let newPath = path.normalize(path.join(__dirname, './content/images/' + files.upload.name));
 
-            fs.rename(oldpath, newPath, function (err){
+            fs.rename(oldpath, newPath, function (err) {
                 console.log('Files was uploaded successfully!');
             });
 
@@ -107,6 +106,52 @@ module.exports = (req, res) => {
             res.writeHead(200, { location: '/' });
             res.end();
         });
+    } else if (pathname.includes('/cats-edit') && req.method === 'GET') {
+        let filePath = path.normalize(path.join(__filename, '../../views/editCat.html'));
+
+        const index = fs.createReadStream(filePath);
+
+        index.on('data', (data) => {
+            let lastSlashIndex = pathname.lastIndexOf('/');
+            let catId = parseInt(pathname.substr(lastSlashIndex + 1));
+            let currentCat = cats.find(x => x.id === catId);
+            let modifiedData = data.toString().replace('{{id}}', catId);
+            modifiedData = modifiedData.replace('{{name}}', currentCat.name);
+            modifiedData = modifiedData.replace('{{description}}', currentCat.description);
+
+            const breedsAsOptions = breeds.map((breed) => `<option value="${breed}">${breed}</option>`);
+            modifiedData = modifiedData.replace('{{catBreeds}}', breedsAsOptions.join('/'));
+
+            res.write(modifiedData);
+        });
+
+        index.on('end', () => {
+            res.end();
+        });
+
+        index.on('error', (err) => {
+            console.log(err);
+        });
+    } else if (pathname.includes('/cats-find-new-home') && req.method === 'GET') {
+        let filePath = path.normalize(path.join(__filename, '../../views/catShelter.html'));
+
+        const index = fs.createReadStream(filePath);
+
+        index.on('data', (data) => {
+            res.write(data);
+        });
+
+        index.on('end', () => {
+            res.end();
+        });
+
+        index.on('error', (err) => {
+            console.log(err);
+        });
+    } else if (pathname.includes('/cats-edit') && req.method === 'POST') {
+
+    } else if (pathname.includes('/cats-find-new-home') && req.method === 'POST') {
+
     } else {
         return true;
     }
