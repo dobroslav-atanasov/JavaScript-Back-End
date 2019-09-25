@@ -138,7 +138,16 @@ module.exports = (req, res) => {
         const index = fs.createReadStream(filePath);
 
         index.on('data', (data) => {
-            res.write(data);
+            let lastSlashIndex = pathname.lastIndexOf('/');
+            let catId = parseInt(pathname.substr(lastSlashIndex + 1));
+            console.log(catId);
+            let currentCat = cats.find(x => x.id === catId);
+            let modifiedData = data.toString().replace('{{id}}', catId);
+            modifiedData = modifiedData.replace('{{name}}', currentCat.name);
+            modifiedData = modifiedData.replace('{{description}}', currentCat.description);
+            modifiedData = modifiedData.replace('{{breed}}', `<option value="${currentCat.breed}">${currentCat.breed}</option>`);
+
+            res.write(modifiedData);
         });
 
         index.on('end', () => {
