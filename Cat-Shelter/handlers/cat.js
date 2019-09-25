@@ -56,20 +56,20 @@ module.exports = (req, res) => {
             }
 
             let oldpath = files.upload.path + '/' + files.upload.name;
-            let newpathpath = 'F:\\Dobri\\Projects\\JavaScript-Back-End\\Cat-Shelter\\content\\images\\' + files.upload.name;
-            mv(oldpath, newpathpath, function (err) {
-                console.log('Files was uploaded successfully!');
-            });
-            // let newPath = path.normalize(path.join('F:\\Dobri\\Projects\\JavaScript-Back-End\\Cat-Shelter', '/content/images/' + files.upload.name));
-
-            // fs.rename(oldpath, newPath, (err) => {
-            //     if (err) {
-            //         console.log(err);
-            //         throw err;
-            //     }
-
+            // let newpathpath = 'F:\\Dobri\\Projects\\JavaScript-Back-End\\Cat-Shelter\\content\\images\\' + files.upload.name;
+            // mv(oldpath, newpathpath, function (err) {
             //     console.log('Files was uploaded successfully!');
             // });
+            let newPath = path.normalize(path.join(__dirname, '/content/images/' + files.upload.name));
+
+            fs.rename(oldpath, newPath, function (err){
+                if (err) {
+                    console.log(err);
+                    throw err;
+                }
+
+                console.log('Files was uploaded successfully!');
+            });
 
             fs.readFile('./data/cats.json', 'utf-8', (err, data) => {
                 if (err) {
