@@ -5,6 +5,7 @@ const qs = require('querystring');
 const formidable = require('formidable');
 const breeds = require('../data/breeds');
 const cats = require('../data/cats');
+const mv = require('mv');
 
 module.exports = (req, res) => {
     const pathname = url.parse(req.url).pathname;
@@ -49,9 +50,44 @@ module.exports = (req, res) => {
         let form = new formidable.IncomingForm();
 
         form.parse(req, (err, fields, files) => {
+            if (err) {
+                console.log(err);
+                throw err;
+            }
 
+            let oldpath = files.upload.path + '/' + files.upload.name;
+            let newpathpath = 'F:\\Dobri\\Projects\\JavaScript-Back-End\\Cat-Shelter\\content\\images\\' + files.upload.name;
+            mv(oldpath, newpathpath, function (err) {
+                console.log('Files was uploaded successfully!');
+            });
+            // let newPath = path.normalize(path.join('F:\\Dobri\\Projects\\JavaScript-Back-End\\Cat-Shelter', '/content/images/' + files.upload.name));
+
+            // fs.rename(oldpath, newPath, (err) => {
+            //     if (err) {
+            //         console.log(err);
+            //         throw err;
+            //     }
+
+            //     console.log('Files was uploaded successfully!');
+            // });
+
+            fs.readFile('./data/cats.json', 'utf-8', (err, data) => {
+                if (err) {
+                    console.log(err);
+                    throw err;
+                }
+
+                let allCats = JSON.parse(data);
+                allCats.push({ id: allCats.length + 1, ...fields, image: files.upload.name });
+                let json = JSON.stringify(allCats);
+
+                fs.writeFile('./data/cats.json', json, () => {
+                    res.writeHead(200, { location: '/' });
+                    res.end();
+                });
+            });
         });
-        
+
     } else if (pathname === '/cats/add-breed' && req.method === 'POST') {
         let formData = '';
 
