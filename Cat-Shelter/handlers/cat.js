@@ -140,10 +140,10 @@ module.exports = (req, res) => {
         index.on('data', (data) => {
             let lastSlashIndex = pathname.lastIndexOf('/');
             let catId = parseInt(pathname.substr(lastSlashIndex + 1));
-            console.log(catId);
             let currentCat = cats.find(x => x.id === catId);
             let modifiedData = data.toString().replace('{{id}}', catId);
             modifiedData = modifiedData.replace('{{name}}', currentCat.name);
+            modifiedData = modifiedData.replace('{{image}}', currentCat.image);
             modifiedData = modifiedData.replace('{{description}}', currentCat.description);
             modifiedData = modifiedData.replace('{{breed}}', `<option value="${currentCat.breed}">${currentCat.breed}</option>`);
 
