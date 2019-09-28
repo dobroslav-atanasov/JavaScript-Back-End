@@ -15,3 +15,10 @@ SoftUni course JavaScript Back-End - September 2019: All tasks with their soluti
 - Validation and Error Handling
 
 ## Repository content:
+
+> **Homeworks**
+
+№   |Tasks							|Descriptions																							| Solution																																													
+:--:|-------------------------------|:-----------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------
+1	|Cat Schelter					|[Description](https://github.com/dobroslav-atanasov/JavaScript-Back-End/tree/master/Resources)			|[Project](https://github.com/dobroslav-atanasov/JavaScript-Back-End/tree/master/Cat-Shelter)		
+2	|Asynchronous Programming		|[Description](https://github.com/dobroslav-atanasov/JavaScript-Back-End/tree/master/Resources)			|[Project](https://github.com/dobroslav-atanasov/JavaScript-Back-End/tree/master/Cubicle)
