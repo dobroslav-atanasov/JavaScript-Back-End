@@ -1,6 +1,6 @@
 <p align="center">
 	<a href="https://softuni.bg/"><img src="https://softuni.bg/Content/images/open-graph/university-default-og.png" alt="Softuni logo" width="400" align="center"></a>
-	<a href="https://nodejs.org/en/"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBd_V_O3F9xETUIKU-z6836ckszpE20L_NW-KpNAMKpaNBsK4P" alt="Node.JS" width="300" align="center"></a>
+	<a href="https://nodejs.org/en/"><img src="https://miro.medium.com/max/600/1*YekyuOZGMw-kGOEqU4YPZg.jpeg" alt="Node.JS" width="300" align="center"></a>
 <p>
 
 ## Course: [JavaScript Back-End](https://softuni.bg/trainings/2452/js-back-end-september-2019)
