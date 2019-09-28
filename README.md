@@ -1,5 +1,5 @@
 <p align="center">
-	<a href="https://softuni.bg/"><img src="https://softuni.bg/Content/images/open-graph/university-default-og.png" alt="Softuni logo" width="400" align="center"></a>
+	<a href="https://softuni.bg/"><img src="https://media.licdn.com/dms/image/C4D0BAQEApCWzd7I27g/company-logo_200_200/0?e=2159024400&v=beta&t=qhXr1k2M4Scz0PfYHUDA3niYXd5jF0p1mLFD4nAuSnw" alt="Softuni logo" width="400" align="center"></a>
 	<a href="https://nodejs.org/en/"><img src="https://miro.medium.com/max/600/1*YekyuOZGMw-kGOEqU4YPZg.jpeg" alt="Node.JS" width="300" align="center"></a>
 <p>
 
