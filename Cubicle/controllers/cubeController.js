@@ -1,3 +1,5 @@
+const cube = require('../models/cube');
+
 function index(req, res) {
     res.render('index.hbs');
 }
