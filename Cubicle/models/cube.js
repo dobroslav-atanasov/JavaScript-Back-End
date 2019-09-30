@@ -3,8 +3,12 @@ class Cube {
         this.data = require('../config/database');
     }
 
-    add(name, imageUrl, description, difficultyLevel) {
-        return undefined;
+    add(cubeModel) {
+        
+    }
+
+    create(name, imageUrl, description, difficultyLevel) {
+        return { name, imageUrl, description, difficultyLevel };
     }
 }
 

@@ -8,8 +8,16 @@ function about(req, res) {
     res.render('about.hbs');
 }
 
-function create(req, res) {
+function getCreate(req, res) {
     res.render('create.hbs');
+}
+
+function postCreate(req, res) {
+    const { name, imageUrl, description, difficultyLevel } = req.body;
+    const cubeModel = cube.create(name, imageUrl, description, difficultyLevel);
+    cube.add(cubeModel).then(() =>{
+        res.redirect('/');
+    });
 }
 
 function details(req, res) {
@@ -33,7 +41,8 @@ function error(req, res) {
 module.exports = {
     index,
     about,
-    create, 
+    getCreate,
+    postCreate,
     details,
     error
 };
