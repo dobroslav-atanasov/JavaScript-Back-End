@@ -26,9 +26,14 @@ function details(req, res) {
     res.render('details.hbs', cube);
 }
 
+function error(req, res) {
+    res.render('404.hbs');
+}
+
 module.exports = {
     index,
     about,
     create, 
-    details
+    details,
+    error
 };

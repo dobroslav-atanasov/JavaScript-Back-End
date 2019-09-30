@@ -1,6 +1,6 @@
 class Cube {
     constructor() {
-
+        this.data = require('../config/database');
     }
 
     add(name, imageUrl, description, difficultyLevel) {

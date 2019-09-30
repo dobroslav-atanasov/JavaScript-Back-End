@@ -7,4 +7,5 @@ module.exports = (app) => {
     app.get('/create', cubeController.create);
     app.get('/about', cubeController.about);
     app.get('/', cubeController.index);
+    app.get('*', cubeController.error);
 };
