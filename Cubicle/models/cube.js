@@ -6,6 +6,12 @@ class Cube {
         this.data = require(path.resolve('config/database.json'));
     }
 
+    getAllCubes() {
+        const cubes = this.data.cubes;
+
+        return cubes;
+    }
+
     getCubeById(id) {
         const cube = this.data.cubes.find(x => x.id === id);
         
@@ -20,7 +26,6 @@ class Cube {
     }
 
     saveChanges(currentIndex, newCube) {
-        console.log(this.data.cubes);
         const db = {
             index: currentIndex,
             cubes: this.data.cubes.concat(newCube)

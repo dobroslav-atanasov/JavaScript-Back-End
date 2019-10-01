@@ -1,7 +1,9 @@
 const cube = require('../models/cube');
 
 function index(req, res) {
-    res.render('index.hbs');
+    const cubes = cube.getAllCubes();
+
+    res.render('index.hbs', {cubes});
 }
 
 function about(req, res) {

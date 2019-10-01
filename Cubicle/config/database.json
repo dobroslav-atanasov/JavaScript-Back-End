@@ -1,13 +1,6 @@
 {
-  "index": 4,
+  "index": 6,
   "cubes": [
-    {
-      "id": 1,
-      "name": "asd",
-      "imageUrl": "asd",
-      "description": "asd",
-      "difficultyLevel": "1"
-    },
     {
       "id": 3,
       "name": "Gan356 Air SM",
@@ -21,6 +14,20 @@
       "imageUrl": "https://thingsidesire.com/wp-content/uploads/2018/06/Eco-Dark-Rubik%E2%80%99s-Cube2.jpg",
       "description": "Eco-Dark is hardcore level.",
       "difficultyLevel": "6"
+    },
+    {
+      "id": 5,
+      "name": "Pyraminx",
+      "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/61izOzq%2BBAL._SY355_.jpg",
+      "description": "Pyraminx is very easy level.",
+      "difficultyLevel": "1"
+    },
+    {
+      "id": 6,
+      "name": "Megaminx",
+      "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/61HpQqVQ37L._SY355_.jpg",
+      "description": "Megaminx is medium level",
+      "difficultyLevel": "3"
     }
   ]
 }
