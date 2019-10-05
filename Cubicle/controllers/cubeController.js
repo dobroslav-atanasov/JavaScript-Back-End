@@ -1,44 +1,50 @@
-const cube = require('../models/cube');
+const cubeSchema = require('../models/cube');
 
 function index(req, res) {
-    const cubes = cube.getAllCubes();
+    cubeSchema.find().then(cubes => {
+        res.render('index.hbs', { cubes });
+    }).catch(err => {
+        console.log(err);
+    });
+}
 
-    res.render('index.hbs', {cubes});
+function details(req, res) {
+    const cubeId = req.params.id;
+    cubeSchema.findById(cubeId).then(cube => {
+        console.log(cube);
+        res.render('details.hbs', cube );
+    }).catch(err => {
+        console.log(err);
+    });
+}
+
+function getCreateCube(req, res) {
+    res.render('create.hbs');
+}
+
+function postCreateCube(req, res) {
+    const { name, imageUrl, description, difficultyLevel } = req.body;
+    cubeSchema.create({ name, imageUrl, description, difficultyLevel }).then(cube => {
+        console.log(cube);
+        res.redirect('/');
+    }).catch(err => {
+        console.log(err);
+    });
 }
 
 function about(req, res) {
     res.render('about.hbs');
 }
 
-function getCreate(req, res) {
-    res.render('create.hbs');
-}
-
-function postCreate(req, res) {
-    const { name, imageUrl, description, difficultyLevel } = req.body;
-    const cubeModel = cube.create(name, imageUrl, description, difficultyLevel);
-
-    cube.add(cubeModel).then(() => {
-        res.redirect('/');
-    });
-}
-
-function details(req, res) {
-    let id = +req.params.id;
-    const searchedCube = cube.getCubeById(id);
-
-    res.render('details.hbs', searchedCube);
-}
-
-function error(req, res) {
-    res.render('404.hbs');
+function notFound(req, res) {
+    res.render('notFound.hbs');
 }
 
 module.exports = {
     index,
+    notFound,
     about,
-    getCreate,
-    postCreate,
-    details,
-    error
-};
+    getCreateCube,
+    postCreateCube,
+    details
+}
