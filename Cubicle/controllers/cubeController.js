@@ -25,8 +25,8 @@ function index(req, res) {
 
 function details(req, res) {
     const cubeId = req.params.id;
-    cubeSchema.findById(cubeId).then(cube => {
-        console.log(cube);
+
+    cubeSchema.findById(cubeId).populate('accessories').then(cube => {
         res.render('details.hbs', { cube });
     }).catch(err => {
         console.log(err);
