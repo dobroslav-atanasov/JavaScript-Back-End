@@ -1,8 +1,23 @@
 const cubeSchema = require('../models/cube');
 
 function index(req, res) {
-    cubeSchema.find().then(cubes => {
-        res.render('index.hbs', { cubes });
+    const { search, from, to } = req.query;
+    let query = {};
+
+    if (search) {
+        query = { ...query, name: { $regex: search } };
+    }
+
+    if (to) {
+        query = { ...query, difficultyLevel: { $lte: +to } };
+    }
+
+    if (from) {
+        query = { ...query, difficultyLevel: { ...query.difficultyLevel, $gte: +from } };
+    }
+
+    cubeSchema.find(query).then(cubes => {
+        res.render('index.hbs', { cubes, search, from, to });
     }).catch(err => {
         console.log(err);
     });
@@ -12,7 +27,7 @@ function details(req, res) {
     const cubeId = req.params.id;
     cubeSchema.findById(cubeId).then(cube => {
         console.log(cube);
-        res.render('details.hbs', cube );
+        res.render('details.hbs', cube);
     }).catch(err => {
         console.log(err);
     });
