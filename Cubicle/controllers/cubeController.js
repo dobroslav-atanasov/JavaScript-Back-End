@@ -27,7 +27,7 @@ function details(req, res) {
     const cubeId = req.params.id;
     cubeSchema.findById(cubeId).then(cube => {
         console.log(cube);
-        res.render('details.hbs', cube);
+        res.render('details.hbs', { cube });
     }).catch(err => {
         console.log(err);
     });

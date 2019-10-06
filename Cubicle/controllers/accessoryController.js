@@ -1,4 +1,5 @@
 const accessorySchema = require('../models/accessory');
+const cubeSchema = require('../models/cube');
 
 function getCreateAccessory(req, res) {
     res.render('createAccessory.hbs');
@@ -16,7 +17,22 @@ function postCreateAccessory(req, res) {
         });
 }
 
+function getAttachAccessory(req, res) {
+    const cubeId = req.params.id;
+
+    cubeSchema.findById(cubeId).then(cube => {
+            accessorySchema.find().then(accessories => {
+                res.render('attachAccessory.hbs', { cube, accessories: accessories.length > 0 ? accessories : null });
+            }).catch(err => {
+                console.log(err);
+            });
+        }).catch(err => {
+            console.log(err);
+        });
+}
+
 module.exports = {
     getCreateAccessory,
-    postCreateAccessory
+    postCreateAccessory,
+    getAttachAccessory
 }
