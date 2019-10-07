@@ -20,10 +20,10 @@ const cubeSchema = new mongoose.Schema({
         min: 0,
         max: 10
     },
-    accessories: {
+    accessories: [{
         type: mongoose.Types.ObjectId,
         ref: 'Accessory'
-    }
+    }]
 });
 
 module.exports = mongoose.model('Cube', cubeSchema);
