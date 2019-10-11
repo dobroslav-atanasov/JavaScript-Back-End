@@ -1,7 +1,9 @@
 const cubeController = require('../controllers/cubeController');
 const accessoryController = require('../controllers/accessoryController');
+const userController = require('../controllers/userController');
 
 module.exports = (app) => {
+    app.get('/register', userController.register);
     app.get('/attach/accessory/:id', accessoryController.getAttachAccessory);
     app.post('/attach/accessory/:id', accessoryController.postAttachAccessory);
     app.get('/details/:id', cubeController.details);
