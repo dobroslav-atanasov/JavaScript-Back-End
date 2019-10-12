@@ -7,7 +7,7 @@ function postRegister(req, res) {
 }
 
 function getLogin(req, res) {
-    
+    res.render('loginPage.hbs');
 }
 
 function postLogin(req, res) {
