@@ -12,11 +12,14 @@
   <div class="container">
     <header>
       <ul>
-        <li><img class="logo" src="/images/logo.png"></li>
+        <li><img class="logo" src="./images/logo.png"></li>
         <li><a href="/">Browse</a></li>
-        <li><a href="/create">Add a Cube</a></li>
-        <li><a href="/create/accessory">Add an Accessory</a></li>
         <li><a href="/about">About</a></li>
+        <li><a href="/create">Add a Cube</a></li>
+        <li><a href="/create/accessory">Add Accessory</a></li>
+        <li><a href="/logout">Logout</a></li>
+        <li><a href="/login">Login</a></li>
+        <li><a href="/register">Register</a></li>
       </ul>
     </header>
     <main>
@@ -30,13 +33,13 @@
       </form>
 
       {{#each cubes}}
-        <div class="cube">
-          <img class="cube" src="{{this.imageUrl}}">
-          <p class="name">{{this.name}}</p>
-          <p><span>Difficulty level:</span> {{this.difficultyLevel}}</p>
-          <a class="btn" href="/details/{{this.id}}">Details</a>
-          <a class="btn" href="/attach/accessory/{{this.id}}">Accessory</a>
-        </div>
+      <div class="cube">
+        <img class="cube" src="{{this.imageUrl}}">
+        <p class="name">{{this.name}}</p>
+        <p><span>Difficulty level:</span> {{this.difficultyLevel}}</p>
+        <a class="btn" href="/details/{{this.id}}">Details</a>
+        <a class="btn" href="/attach/accessory/{{this.id}}">Accessory</a>
+      </div>
       {{/each}}
     </main>
   </div>
