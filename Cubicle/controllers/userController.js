@@ -1,5 +1,6 @@
-const userSchema = require('../models/user');
 const bcrypt = require('bcrypt');
+const userSchema = require('../models/user');
+const jwt = require('../common/jwt');
 const saltPounds = 10;
 
 function getRegister(req, res) {
