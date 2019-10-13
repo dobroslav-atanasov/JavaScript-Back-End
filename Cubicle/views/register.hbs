@@ -27,10 +27,11 @@
       <div class="form">
         <form action='/register' method="POST">
           <label for="username">Username</label>
-          {{#if errors.username}}
-            <div class="error">{{errors.username}}</div>
-          {{/if}}
           <input type="text" id="username" name="username">
+          {{#if errors.username}}
+            <div class="error" style="color: red;">{{errors.username}}</div>
+            <br>
+          {{/if}}
 
           <label for="password">Password</label>
           <input type="password" id="password" name="password">
@@ -38,7 +39,7 @@
           <label for="repeatPassword">Re-Password</label>
           <input type="password" id="repeatPassword" name="repeatPassword">
           {{#if errors.repeatPassword}}
-            <div class="error">{{errors.repeatPassword}}</div>
+            <div class="error" style="color: red;">{{errors.repeatPassword}}</div>
           {{/if}}
           <input type="submit" value="Register">
         </form>
