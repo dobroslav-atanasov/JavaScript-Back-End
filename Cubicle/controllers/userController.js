@@ -28,8 +28,8 @@ function postRegister(req, res) {
                     }
                 });
             });
-        }); 
-    });   
+        });
+    });
 }
 
 function getLogin(req, res) {
@@ -37,7 +37,28 @@ function getLogin(req, res) {
 }
 
 function postLogin(req, res) {
+    const { username, password } = req.body;
+    userSchema.findOne({ username })
+        .then(user => Promise.all([user, user.matchPassword(password)]))
+        .then(([user, match]) => {
+            if (!match) {
+                res.render('login.hbs', {
+                    errors: {
+                        invalid: 'Invalid username or password!'
+                    }
+                });
+                return;
+            }
 
+            // create jwt
+        }).catch(err => {
+            res.render('login.hbs', {
+                errors: {
+                    invalid: 'Invalid username or password!'
+                }
+            });
+            return;
+        });
 }
 
 function logout(req, res) {
