@@ -52,6 +52,8 @@ function postLogin(req, res) {
             }
 
             // create jwt
+            const jwtToken = jwt.create({ id: user.id });
+            console.log(jwtToken);
         }).catch(err => {
             res.render('login.hbs', {
                 errors: {
