@@ -51,9 +51,9 @@ function postLogin(req, res) {
                 return;
             }
 
-            // create jwt
             const jwtToken = jwt.create({ id: user.id });
-            console.log(jwtToken);
+            res.cookie('auth-token', jwtToken);
+            res.redirect('/');
         }).catch(err => {
             res.render('login.hbs', {
                 errors: {
@@ -65,7 +65,8 @@ function postLogin(req, res) {
 }
 
 function logout(req, res) {
-
+    res.clearCookie('auth-token');
+    res.redirect('/');
 }
 
 module.exports = {
