@@ -9,16 +9,10 @@ function create(payloads) {
 }
 
 function verifyToken(token) {
-    return new Promise((resolve, reject) => {
-        jwt.verify(toString, secret, (err, payloads) => {
-            if (err) {
-                reject(err);
-                return;
-            }
+    const data = jwt.verify(token, secret);
 
-            resolve(payloads);
-        });
-    });
+    return data;
+    
 }
 
 module.exports = {
