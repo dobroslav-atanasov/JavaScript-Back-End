@@ -1,4 +1,9 @@
 const cubeSchema = require('../models/cube');
+const jwt = require('../common/jwt');
+const userSchema = require('../models/user');
+
+// 1 all pages view menu
+// 2 authorization
 
 function index(req, res) {
     const { search, from, to } = req.query;
@@ -16,8 +21,13 @@ function index(req, res) {
         query = { ...query, difficultyLevel: { ...query.difficultyLevel, $gte: +from } };
     }
 
+    let auth = false;
+    if (req.cookies['auth-token'] !== undefined) {
+        auth = true;
+    }
+
     cubeSchema.find(query).then(cubes => {
-        res.render('index.hbs', { cubes, search, from, to });
+        res.render('index.hbs', { cubes, search, from, to, auth });
     }).catch(err => {
         console.log(err);
     });
