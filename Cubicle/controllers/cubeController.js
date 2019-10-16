@@ -1,5 +1,6 @@
 const cubeSchema = require('../models/cube');
 const jwt = require('../common/jwt');
+const authentication = require('../common/authentication');
 
 function index(req, res) {
     const { search, from, to } = req.query;
@@ -17,11 +18,9 @@ function index(req, res) {
         query = { ...query, difficultyLevel: { ...query.difficultyLevel, $gte: +from } };
     }
 
-    const user = req.user;
-    console.log(user);
-    
+    const auth = authentication.checkForAuthentication(req, res);
     cubeSchema.find(query).then(cubes => {
-        res.render('index.hbs', { cubes, search, from, to, user });
+        res.render('index.hbs', { cubes, search, from, to, auth });
     }).catch(err => {
         console.log(err);
     });
@@ -52,11 +51,13 @@ function postCreateCube(req, res) {
 }
 
 function about(req, res) {
-    res.render('about.hbs');
+    const auth = authentication.checkForAuthentication(req, res);
+    res.render('about.hbs', { auth });
 }
 
 function notFound(req, res) {
-    res.render('notFound.hbs');
+    const auth = authentication.checkForAuthentication(req, res);
+    res.render('notFound.hbs', { auth });
 }
 
 module.exports = {

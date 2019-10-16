@@ -1,10 +1,12 @@
 const bcrypt = require('bcrypt');
 const userSchema = require('../models/user');
 const jwt = require('../common/jwt');
+const authentication = require('../common/authentication');
 const saltPounds = 10;
 
 function getRegister(req, res) {
-    res.render('register.hbs');
+    const auth = authentication.checkForAuthentication(req, res);
+    res.render('register.hbs', { auth });
 }
 
 function postRegister(req, res) {
@@ -34,7 +36,8 @@ function postRegister(req, res) {
 }
 
 function getLogin(req, res) {
-    res.render('login.hbs');
+    const auth = authentication.checkForAuthentication(req, res);
+    res.render('login.hbs', { auth });
 }
 
 function postLogin(req, res) {
