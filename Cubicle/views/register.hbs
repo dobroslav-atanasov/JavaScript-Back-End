@@ -32,8 +32,8 @@
           <label for="username">Username</label>
           <input type="text" id="username" name="username">
           {{#if errors.username}}
-            <div class="error" style="color: red;">{{errors.username}}</div>
-            <br>
+          <div class="error" style="color: red;">{{errors.username}}</div>
+          <br>
           {{/if}}
 
           <label for="password">Password</label>
@@ -42,7 +42,7 @@
           <label for="repeatPassword">Re-Password</label>
           <input type="password" id="repeatPassword" name="repeatPassword">
           {{#if errors.repeatPassword}}
-            <div class="error" style="color: red;">{{errors.repeatPassword}}</div>
+          <div class="error" style="color: red;">{{errors.repeatPassword}}</div>
           {{/if}}
           <input type="submit" value="Register">
         </form>
