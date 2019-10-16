@@ -3,6 +3,10 @@ const accessoryController = require('../controllers/accessoryController');
 const userController = require('../controllers/userController');
 
 module.exports = (app) => {
+    app.post('/delete/:id', cubeController.postDelete);
+    app.get('/delete/:id', cubeController.getDelete);
+    app.post('/edit/:id', cubeController.postEdit);
+    app.get('/edit/:id', cubeController.getEdit);
     app.get('/logout', userController.logout);
     app.post('/login', userController.postLogin);
     app.get('/login', userController.getLogin);
