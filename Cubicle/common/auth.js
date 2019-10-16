@@ -1,22 +1,14 @@
-const jwt = require('../common/jwt');
-const userSchema = require('../models/user');
-
-function auth(redirectUnauthenticated = true) {
+function checkForAuthentication(req, res) {
     return function (req, res, next) {
         const token = req.cookies['auth-token'] || '';
-        Promise.all([
-            jwt.verifyToken(token)
-        ]).then(data => {
+        jwt.verifyToken(token).then(data => {
             userSchema.findById(data.id).then(user => {
                 req.user = user;
-                next();
             });
         }).catch(err => {
-            next(err);
+            console.log(err);
         });
     };
 }
 
-module.exports = { 
-    auth 
-};
+module.exports = { auth };

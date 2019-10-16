@@ -7,7 +7,6 @@ function create(payloads) {
 
 function verifyToken(token) {
     return jwt.verify(token, secret);
-
 }
 
 module.exports = {
