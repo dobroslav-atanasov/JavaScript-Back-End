@@ -1,8 +1,10 @@
 const accessorySchema = require('../models/accessory');
 const cubeSchema = require('../models/cube');
+const authentication = require('../common/authentication');
 
 function getCreateAccessory(req, res) {
-    res.render('createAccessory.hbs');
+    const auth = authentication.checkForAuthentication(req, res);
+    res.render('createAccessory.hbs', { auth });
 }
 
 function postCreateAccessory(req, res) {

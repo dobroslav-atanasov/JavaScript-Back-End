@@ -27,16 +27,19 @@ function index(req, res) {
 }
 
 function details(req, res) {
+    const auth = authentication.checkForAuthentication(req, res);
     const cubeId = req.params.id;
     cubeSchema.findById(cubeId).populate('accessories').then(cube => {
-        res.render('details.hbs', { cube });
+        const authorization = authentication.checkForAuthorization(req, res, cube);
+        res.render('details.hbs', { cube, auth, authorization });
     }).catch(err => {
         console.log(err);
     });
 }
 
 function getCreateCube(req, res) {
-    res.render('create.hbs');
+    const auth = authentication.checkForAuthentication(req, res);
+    res.render('create.hbs', { auth });
 }
 
 function postCreateCube(req, res) {
@@ -60,11 +63,55 @@ function notFound(req, res) {
     res.render('notFound.hbs', { auth });
 }
 
+function getEdit(req, res) {
+    const auth = authentication.checkForAuthentication(req, res);
+    const cubeId = req.params.id;
+    cubeSchema.findById(cubeId).populate('accessories').then(cube => {
+        res.render('edit.hbs', { cube, auth });
+    }).catch(err => {
+        console.log(err);
+    });
+}
+
+function postEdit(req, res) {
+    const cubeId = req.params.id;
+    const { name, imageUrl, description, difficultyLevel } = req.body;
+    cubeSchema.findByIdAndUpdate(cubeId, { name, imageUrl, description, difficultyLevel }).then(cube => {
+        console.log(cube);
+        res.redirect(`/details/${cubeId}`);
+    }).catch(err => {
+        console.log(err);
+    });
+}
+
+function getDelete(req, res) {
+    const auth = authentication.checkForAuthentication(req, res);
+    const cubeId = req.params.id;
+    cubeSchema.findById(cubeId).then(cube => {
+        res.render('delete.hbs', { cube, auth });
+    }).catch(err => {
+        console.log(err);
+    });
+}
+
+function postDelete(req, res) {
+    const cubeId = req.params.id;
+    cubeSchema.remove({ _id: cubeId }).then(() => {
+        res.redirect('/');
+    }).catch(err => {
+        console.log(err);
+    });
+}
+
 module.exports = {
     index,
     notFound,
     about,
     getCreateCube,
     postCreateCube,
-    details
+    details,
+    getEdit,
+    postEdit,
+    getDelete,
+    postDelete
 }
