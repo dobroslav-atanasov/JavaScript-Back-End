@@ -1,3 +1,5 @@
+const jwt = require('../common/jwt');
+
 function checkForAuthentication(req, res) {
     let auth = false;
     if (req.cookies['auth-token'] !== undefined) {
@@ -7,6 +9,17 @@ function checkForAuthentication(req, res) {
     return auth;
 }
 
+function checkForAuthorization(req, res, cube) {
+    let auth = false;
+    const creatorId = jwt.verifyToken(req.cookies['auth-token']).id;
+    if (cube.creatorId === creatorId) {
+        auth = true;
+    }
+
+    return auth;
+}
+
 module.exports = {
-    checkForAuthentication
+    checkForAuthentication,
+    checkForAuthorization
 };
