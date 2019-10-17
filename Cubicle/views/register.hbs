@@ -25,6 +25,11 @@
         {{/if}}
       </ul>
     </header>
+    {{#if errors}}
+    <div id="notifications">
+      <p id="notification-message">{{errors.repeatPassword}}</p>
+    </div>
+    {{/if}}
     <main>
       <h1>Register Form</h1>
       <div class="form">
@@ -41,9 +46,6 @@
 
           <label for="repeatPassword">Re-Password</label>
           <input type="password" id="repeatPassword" name="repeatPassword">
-          {{#if errors.repeatPassword}}
-          <div class="error" style="color: red;">{{errors.repeatPassword}}</div>
-          {{/if}}
           <input type="submit" value="Register">
         </form>
       </div>
