@@ -6,7 +6,13 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         unique: true,
-        minlength: [5, `Username should be at least 5 symbols long!`]
+        minlength: [5, `Username should be at least 5 symbols long!`],
+        validate: {
+            validator: function (v) {
+                return /[a-zA-Z0-9]+/.test(v);
+            },
+            message: props => `${props.value} is not a valid username!`
+        }
     },
     hashPassword: {
         type: String,
