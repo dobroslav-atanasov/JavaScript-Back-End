@@ -25,9 +25,19 @@
         {{/if}}
       </ul>
     </header>
-    {{#if errors}}
+    {{#if error.username}}
     <div id="notifications">
-      <p id="notification-message">{{errors.repeatPassword}}</p>
+      <p id="notification-message">{{error.username.message}}</p>
+    </div>
+    {{/if}}
+    {{#if error.hashPassword}}
+    <div id="notifications">
+      <p id="notification-message">{{error.hashPassword.message}}</p>
+    </div>
+    {{/if}}
+    {{#if error.repeatPassword}}
+    <div id="notifications">
+      <p id="notification-message">{{error.repeatPassword}}</p>
     </div>
     {{/if}}
     <main>
@@ -36,10 +46,6 @@
         <form action='/register' method="POST">
           <label for="username">Username</label>
           <input type="text" id="username" name="username">
-          {{#if errors.username}}
-          <div class="error" style="color: red;">{{errors.username}}</div>
-          <br>
-          {{/if}}
 
           <label for="password">Password</label>
           <input type="password" id="password" name="password">
