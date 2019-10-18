@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt');
 const userSchema = require('../models/user');
 const jwt = require('../common/jwt');
 const authentication = require('../common/authentication');
+const { validationResult } = require('express-validator');
 const saltPounds = 10;
 
 function getRegister(req, res) {
@@ -11,10 +12,19 @@ function getRegister(req, res) {
 
 function postRegister(req, res) {
     const { username, password, repeatPassword } = req.body;
+    if (password.length <= 4) {
+        res.render('register.hbs', {
+            error: {
+                hashPassword: 'Password should be at least 5 symbols long!'
+            }
+        });
+        return;
+    }
+
     if (password !== repeatPassword) {
         res.render('register.hbs', {
-            errors: {
-                repeatPassword: 'Passwords don\'t match!'
+            error: {
+                repeatPassword: 'Your password and confirmation password do not match.'
             }
         });
         return;
@@ -26,9 +36,7 @@ function postRegister(req, res) {
                 res.redirect('/login');
             }).catch(err => {
                 res.render('register.hbs', {
-                    errors: {
-                        username: 'Username already exist!'
-                    }
+                    error: err.errors
                 });
             });
         });
