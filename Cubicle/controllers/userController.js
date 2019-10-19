@@ -2,7 +2,6 @@ const bcrypt = require('bcrypt');
 const userSchema = require('../models/user');
 const jwt = require('../common/jwt');
 const authentication = require('../common/authentication');
-const { validationResult } = require('express-validator');
 const saltPounds = 10;
 
 function getRegister(req, res) {
@@ -12,15 +11,6 @@ function getRegister(req, res) {
 
 function postRegister(req, res) {
     const { username, password, repeatPassword } = req.body;
-    if (password.length <= 4) {
-        res.render('register.hbs', {
-            error: {
-                hashPassword: 'Password should be at least 5 symbols long!'
-            }
-        });
-        return;
-    }
-
     if (password !== repeatPassword) {
         res.render('register.hbs', {
             error: {
@@ -30,17 +20,30 @@ function postRegister(req, res) {
         return;
     }
 
-    bcrypt.genSalt(saltPounds, (err, salt) => {
-        bcrypt.hash(password, salt, (err, hashPassword) => {
-            userSchema.create({ username, hashPassword }).then(() => {
-                res.redirect('/login');
-            }).catch(err => {
-                res.render('register.hbs', {
-                    error: err.errors
-                });
+    userSchema.create({ username, password }).then(() => {
+        res.redirect('/login');
+    }).catch(err => {
+        if (err.name === 'ValidationError') {
+            res.render('register.hbs', {
+                error: err.errors
             });
-        });
+        }
     });
+
+    // Change in user model password ot hashPassword
+    // bcrypt.genSalt(saltPounds, (err, salt) => {
+    //     bcrypt.hash(password, salt, (err, hashPassword) => {
+    //         userSchema.create({ username, hashPassword }).then(() => {
+    //             res.redirect('/login');
+    //         }).catch(err => {
+    //             if (err.name === 'ValidationError') {
+    //                 res.render('register.hbs', {
+    //                     error: err.errors
+    //                 });
+    //             }
+    //         });
+    //     });
+    // });
 }
 
 function getLogin(req, res) {
