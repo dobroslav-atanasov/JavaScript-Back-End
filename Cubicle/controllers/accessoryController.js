@@ -15,7 +15,11 @@ function postCreateAccessory(req, res) {
             console.log(accessory);
             res.redirect('/');
         }).catch(err => {
-            console.log(err);
+            if (err.name === 'ValidationError') {
+                res.render('createAccessory.hbs', {
+                    error: err.errors
+                });
+            }
         });
 }
 
