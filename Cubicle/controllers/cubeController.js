@@ -46,10 +46,13 @@ function postCreateCube(req, res) {
     const creatorId = jwt.verifyToken(req.cookies['auth-token']).id;
     const { name, imageUrl, description, difficultyLevel } = req.body;
     cubeSchema.create({ name, imageUrl, description, difficultyLevel, creatorId }).then(cube => {
-        console.log(cube);
         res.redirect('/');
     }).catch(err => {
-        console.log(err);
+        if (err.name === 'ValidationError') {
+            res.render('create.hbs', {
+                error: err.errors
+            });
+        }
     });
 }
 
