@@ -58,8 +58,8 @@ function postLogin(req, res) {
         .then(([user, match]) => {
             if (!match) {
                 res.render('login.hbs', {
-                    errors: {
-                        invalid: 'Invalid username or password!'
+                    error: {
+                        loginError: 'Invalid username or password!'
                     }
                 });
                 return;
@@ -70,8 +70,8 @@ function postLogin(req, res) {
             res.redirect('/');
         }).catch(err => {
             res.render('login.hbs', {
-                errors: {
-                    invalid: 'Invalid username or password!'
+                error: {
+                    loginError: 'Invalid username or password!'
                 }
             });
             return;
