@@ -25,6 +25,13 @@
         {{/if}}
       </ul>
     </header>
+
+    {{#if error}}
+    <div id="notifications">
+      <p id="notification-message">{{error.loginError}}</p>
+    </div>
+    {{/if}}
+
     <main>
       <h1>Login Form</h1>
       <div class="form">
@@ -34,9 +41,7 @@
 
           <label for="password">Password</label>
           <input type="password" id="password" name="password">
-          {{#if errors.invalid}}
-          <div class="error" style="color: red;">{{errors.invalid}}</div>
-          {{/if}}
+ 
           <input type="submit" value="Login">
         </form>
       </div>
