@@ -25,14 +25,15 @@
         {{/if}}
       </ul>
     </header>
+
     {{#if error.username}}
     <div id="notifications">
       <p id="notification-message">{{error.username.message}}</p>
     </div>
     {{/if}}
-    {{#if error.hashPassword}}
+    {{#if error.password}}
     <div id="notifications">
-      <p id="notification-message">{{error.hashPassword.message}}</p>
+      <p id="notification-message">{{error.password.message}}</p>
     </div>
     {{/if}}
     {{#if error.repeatPassword}}
@@ -40,6 +41,7 @@
       <p id="notification-message">{{error.repeatPassword}}</p>
     </div>
     {{/if}}
+    
     <main>
       <h1>Register Form</h1>
       <div class="form">
