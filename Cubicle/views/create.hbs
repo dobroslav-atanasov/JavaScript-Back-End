@@ -25,6 +25,23 @@
         {{/if}}
       </ul>
     </header>
+
+    {{#if error.name}}
+    <div id="notifications">
+      <p id="notification-message">{{error.name.message}}</p>
+    </div>
+    {{/if}}
+    {{#if error.description}}
+    <div id="notifications">
+      <p id="notification-message">{{error.description.message}}</p>
+    </div>
+    {{/if}}
+    {{#if error.imageUrl}}
+    <div id="notifications">
+      <p id="notification-message">{{error.imageUrl.message}}</p>
+    </div>
+    {{/if}}
+    
     <main>
       <h1>Create</h1>
       <div class="form">
