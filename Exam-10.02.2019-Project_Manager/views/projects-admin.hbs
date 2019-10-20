@@ -38,16 +38,18 @@
     <h1>Projects</h1>
     <h3>Manage Teams</h3>
     <div class="form">
-      <form>
+      <form action="/projects" method="POST">
         <label>Team</label>
         <select>
-          <option value="5c4af1a9ce0c0b31d4ee703b">Developers</option>
-          <option value="5c4af4f1ce0c0b31d4ee7040">Students</option>
-          <option value="5c4ed20e58d65f25640536e5">Strawberries</option>
+          {{#each teams}}
+          <option value={{this.id}}>{{this.name}}</option>
+          {{/each}}
         </select>
         <label>Project</label>
         <select>
-          <option value="5c4af1a2ce0c0b31d4ee703a">Interactive</option>
+          {{#each projects}}
+          <option value={{this.id}}>{{this.name}}</option>
+          {{/each}}
         </select>
         <input type="submit" value="Distribute">
       </form>
