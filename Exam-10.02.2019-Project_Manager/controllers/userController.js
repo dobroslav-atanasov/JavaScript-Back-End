@@ -8,7 +8,6 @@ function getRegister(req, res) {
         console.log(user);
         res.render('register.hbs', { user });
     });
-    //res.render('register.hbs');
 }
 
 function postRegister(req, res) {
