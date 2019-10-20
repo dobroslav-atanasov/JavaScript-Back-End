@@ -39,7 +39,6 @@ function getTeams(req, res) {
 }
 
 function postTeams(req, res) {
-    // TODO
 }
 
 module.exports = {
