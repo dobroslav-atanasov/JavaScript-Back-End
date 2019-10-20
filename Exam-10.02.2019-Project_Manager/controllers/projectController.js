@@ -40,7 +40,16 @@ function getProjects(req, res) {
 }
 
 function postProjects(req, res) {
-    // TODO
+    const { teamId, projectId } = req.body;
+
+    Promise.all([
+        teamModel.updateOne({ _id: teamId }, { $push: { projects: projectId } }),
+        projectModel.updateOne({ _id: projectId }, { $push: { teams: teamId } })
+    ]).then(() => {
+        res.redirect('/');
+    }).catch(err => {
+        console.log(err);
+    });
 }
 
 module.exports = {
