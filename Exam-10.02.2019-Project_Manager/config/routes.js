@@ -5,11 +5,13 @@ const projectController = require('../controllers/projectController');
 
 module.exports = (app) => {
     // Project
+    app.post('/projects', projectController.postProjects);
     app.get('/projects', projectController.getProjects);
     app.post('/create-project', projectController.postCreateProject);
     app.get('/create-project', projectController.getCreateProject);
 
     // Team
+    app.post('/teams', teamController.postTeams);
     app.get('/teams', teamController.getTeams);
     app.post('/create-team', teamController.postCreateTeam);
     app.get('/create-team', teamController.getCreateTeam);
