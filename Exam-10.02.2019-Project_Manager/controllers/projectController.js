@@ -39,8 +39,13 @@ function getProjects(req, res) {
     });
 }
 
+function postProjects(req, res) {
+    // TODO
+}
+
 module.exports = {
     getCreateProject,
     postCreateProject,
-    getProjects
+    getProjects,
+    postProjects
 }

@@ -38,8 +38,13 @@ function getTeams(req, res) {
     });
 }
 
+function postTeams(req, res) {
+    // TODO
+}
+
 module.exports = {
     getCreateTeam,
     postCreateTeam,
-    getTeams
+    getTeams,
+    postTeams
 }
