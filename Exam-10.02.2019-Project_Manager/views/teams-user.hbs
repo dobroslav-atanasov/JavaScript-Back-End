@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Projects Manager</title>
+  <link href="/css/site.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+  <header>
+    <ul>
+      <li><a href="/">Home</a></li>
+      {{#if user}}
+      <li><a href="/projects">Projects</a></li>
+      <li><a href="/teams">Teams</a></li>
+      {{/if}}
+      {{#if isAdmin}}
+      <li><a href="/create-team">Create Team</a></li>
+      <li><a href="/create-project">Create Project</a></li>
+      {{/if}}
+      <div class="right">
+        {{#if user}}
+        <li>Welcome, {{user.username}}!</li>
+        <li><a href="/profile">Profile</a></li>
+        <li>
+          <form id="logout-form" action="/logout" method="get"></form>
+          <a href="javascript:document.getElementById('logout-form').submit()">Logout</a>
+        </li>
+        {{else}}
+        <li><a href="/login">Login</a></li>
+        <li><a href="/register">Register</a></li>
+        {{/if}}
+      </div>
+    </ul>
+  </header>
+  <main>
+    <h1>Teams</h1>
+    <form class="search">
+      <label>Seach: </label>
+      <input type="text">
+      <input type="submit" value="Search">
+    </form>
+    <div class="teams">
+      <div class="team">
+        <h2>Developers</h2>
+        <div class="team-info">
+          <h3>Members</h3>
+          <p>Hristomir Asenov</p>
+          <p>Pesho Peshev</p>
+        </div>
+        <div class="team-info">
+          <h3>Projects</h3>
+          <p>Team has no projects</p>
+        </div>
+      </div>
+      <div class="team">
+        <h2>Students</h2>
+        <div class="team-info">
+          <h3>Members</h3>
+          <p>Tanya Staneva</p>
+          <p>Gosho Goshev</p>
+        </div>
+        <div class="team-info">
+          <h3>Projects</h3>
+          <p>Blood Donnorship</p>
+        </div>
+      </div>
+      <div class="team">
+        <h2>Strawberries</h2>
+        <div class="team-info">
+          <h3>Members</h3>
+          <p>Team has no members</p>
+        </div>
+        <div class="team-info">
+          <h3>Projects</h3>
+          <p>Team has no projects</p>
+        </div>
+      </div>
+    </div>
+
+  </main>
+  <footer>
+    Express Exam @SoftUni
+  </footer>
+</body>
+
+</html>
