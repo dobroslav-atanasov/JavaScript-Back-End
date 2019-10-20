@@ -21,3 +21,9 @@ SoftUni course JavaScript Back-End - September 2019: All tasks with their soluti
 :--:|-------------------------------|:-----------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------
 1	|Cat Schelter					|[Description](https://github.com/dobroslav-atanasov/JavaScript-Back-End/tree/master/Resources)			|[Project](https://github.com/dobroslav-atanasov/JavaScript-Back-End/tree/master/Cat-Shelter)		
 2	|Cubicle						|[Description](https://github.com/dobroslav-atanasov/JavaScript-Back-End/tree/master/Resources)			|[Project](https://github.com/dobroslav-atanasov/JavaScript-Back-End/tree/master/Cubicle)
+
+> **Exams**
+
+|Date				|Name				|Descriptions																														|Solutions
+|:-----------------:|:-----------------:|:---------------------------------------------------------------------------------------------------------------------------------:|:----------:
+|10 February 2019	|Project Manager	|[Description](https://github.com/dobroslav-atanasov/JavaScript-Back-End/tree/master/Resources/Exam-10.02.2019-Project_Manager)		|[Solution](https://github.com/dobroslav-atanasov/JavaScript-Back-End/tree/master/Exam-10.02.2019-Project_Manager)
