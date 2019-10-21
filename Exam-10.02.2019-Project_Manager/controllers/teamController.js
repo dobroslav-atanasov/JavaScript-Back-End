@@ -61,9 +61,22 @@ function postTeams(req, res) {
     });
 }
 
+function leaveTeam(req, res) {
+    const userId = authentication.checkForAuthentication(req, res);
+    const teamId = req.params.id;
+
+    Promise.all([
+        teamModel.findByIdAndUpdate(teamId, { $pull: { 'members': userId } }),
+        userModel.findByIdAndUpdate(userId, { $pull: { 'teams': teamId } })
+    ]).then(() => {
+        res.redirect('/profile');
+    });
+}
+
 module.exports = {
     getCreateTeam,
     postCreateTeam,
     getTeams,
-    postTeams
+    postTeams,
+    leaveTeam
 }

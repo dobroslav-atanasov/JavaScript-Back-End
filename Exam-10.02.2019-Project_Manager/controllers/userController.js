@@ -1,6 +1,8 @@
 const userModel = require('../models/user');
 const jwt = require('../common/jwt');
 const authentication = require('../common/authentication');
+const teamModel = require('../models/team');
+const projectModel = require('../models/project');
 
 function getRegister(req, res) {
     const userId = authentication.checkForAuthentication(req, res);
@@ -71,7 +73,10 @@ function profile(req, res) {
             res.render('profile.hbs', { user, isAdmin });
             return;
         }
-        res.render('profile.hbs', { user });
+
+        teamModel.find({ members: { $in: userId } }).populate('projects').then(teams => {
+            res.render('profile.hbs', { user, teams });
+        });
     });
 }
 
