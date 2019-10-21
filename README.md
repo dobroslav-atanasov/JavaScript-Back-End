@@ -27,4 +27,4 @@ SoftUni course JavaScript Back-End - September 2019: All tasks with their soluti
 |Date				|Name				|Descriptions																														|Solutions
 |:-----------------:|:-----------------:|:---------------------------------------------------------------------------------------------------------------------------------:|:----------:
 |10 February 2019	|Project Manager	|[Description](https://github.com/dobroslav-atanasov/JavaScript-Back-End/tree/master/Resources/Exam-10.02.2019-Project_Manager)		|[Solution](https://github.com/dobroslav-atanasov/JavaScript-Back-End/tree/master/Exam-10.02.2019-Project_Manager)
-|19 April 2019		|Video Tutorials	|[Description](https://github.com/dobroslav-atanasov/JavaScript-Back-End/tree/master/Resources/Exam-19.04.2019-Video_Tutorials)		|[Solution](https://github.com/dobroslav-atanasov/JavaScript-Back-End/tree/master/Exam-10.02.2019-Project_Manager)
+|19 April 2019		|Video Tutorials	|[Description](https://github.com/dobroslav-atanasov/JavaScript-Back-End/tree/master/Resources/Exam-19.04.2019-Video_Tutorials)		|[Solution](https://github.com/dobroslav-atanasov/JavaScript-Back-End/tree/master/Exam-19.04.2019-Video_Tutorials)
