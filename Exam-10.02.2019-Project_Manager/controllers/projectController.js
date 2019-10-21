@@ -43,7 +43,7 @@ function getProjects(req, res) {
             query = { ...query, name: { $regex: search } };
         }
 
-        projectModel.find(query).then(projects => {
+        projectModel.find(query).populate('teams').then(projects => {
             res.render('projects-user.hbs', { user, projects });
         });
     });
