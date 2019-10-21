@@ -41,14 +41,24 @@
       <div class="profile">
         <div class="info">
           <h3>My Teams</h3>
-          <form>
-            <p>Developers</p>
+          {{#each teams}}
+          <form action="/leave/{{id}}" method="POST">
+            <p>{{name}}</p>
             <input type="submit" value="Leave Team">
           </form>
+          {{/each}}
         </div>
         <div class="more-info">
           <h3>My Projects</h3>
+          {{#if teams}}
+          {{#each teams}}
+            {{#each projects}}
+            <p>{{name}}</p>
+            {{/each}}
+          {{/each}}
+          {{else}}
           <p>You have no projects!</p>
+          {{/if}}
         </div>
       </div>
     </div>
