@@ -40,13 +40,13 @@
     <div class="form">
       <form action="/teams" method="POST">
         <label>User</label>
-        <select>
+        <select name="userId">
           {{#each users}}
           <option value={{this.id}}>{{this.username}}</option>
           {{/each}}
         </select>
         <label>Team</label>
-        <select>
+        <select name="teamId">
           {{#each teams}}
           <option value="{{this.id}}">{{this.name}}</option>
           {{/each}}

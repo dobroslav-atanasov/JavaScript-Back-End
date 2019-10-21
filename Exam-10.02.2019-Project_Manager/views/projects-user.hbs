@@ -38,20 +38,25 @@
     <h1>Projects</h1>
     <form class="search">
       <label>Seach: </label>
-      <input type="text">
+      <input type="text" name="search">
       <input type="submit" value="Search">
     </form>
     <div class="projects">
+      {{#each projects}}
       <div class="project">
-        <h2>Interactive</h2>
-        <h3>Team: No Team assigned</h3>
-        <p>Description: Interactive platform for SoftUni</p>
+        <h2>{{this.name}}</h2>
+        {{#if this.teams}}
+        {{#each this.teams}}
+          {{#if ../id}}
+            <h3>Team: {{../name}}</h3>
+          {{/if}}
+        {{/each}}
+        {{else}}
+          <h3>Team: No Team assigned</h3>
+        {{/if}}
+        <p>Description: {{this.description}}</p>
       </div>
-      <div class="project">
-        <h2>Blood Donnorship</h2>
-        <h3>Team: Students</h3>
-        <p>Description: Create blood donnorship application</p>
-      </div>
+      {{/each}}
     </div>
 
   </main>
