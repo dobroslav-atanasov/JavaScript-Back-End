@@ -34,11 +34,31 @@ function getTeams(req, res) {
             });
             return;
         }
-        res.render('teams-user.hbs', { user });
+
+        const { search } = req.query;
+        let query = {};
+
+        if (search) {
+            query = { ...query, name: { $regex: search } };
+        }
+
+        teamModel.find(query).then(teams => {
+            res.render('teams-user.hbs', { user, teams });
+        });
     });
 }
 
 function postTeams(req, res) {
+    const { userId, teamId } = req.body;
+
+    Promise.all([
+        teamModel.updateOne({ _id: teamId }, { $push: { members: userId } }),
+        userModel.updateOne({ _id: userId }, { $push: { teams: teamId } }),
+    ]).then(() => {
+        res.redirect('/');
+    }).catch(err => {
+        console.log(err);
+    });
 }
 
 module.exports = {

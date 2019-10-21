@@ -35,7 +35,17 @@ function getProjects(req, res) {
             });
             return;
         }
-        res.render('projects-user.hbs', { user });
+
+        const { search } = req.query;
+        let query = {};
+
+        if (search) {
+            query = { ...query, name: { $regex: search } };
+        }
+
+        projectModel.find(query).then(projects => {
+            res.render('projects-user.hbs', { user, projects });
+        });
     });
 }
 
