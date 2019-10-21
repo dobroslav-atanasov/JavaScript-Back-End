@@ -47,12 +47,10 @@
         <h2>{{this.name}}</h2>
         {{#if this.teams}}
         {{#each this.teams}}
-          {{#if ../id}}
-            <h3>Team: {{../name}}</h3>
-          {{/if}}
+        <h3>Team: {{name}}</h3>
         {{/each}}
         {{else}}
-          <h3>Team: No Team assigned</h3>
+        <h3>Team: No Team assigned</h3>
         {{/if}}
         <p>Description: {{this.description}}</p>
       </div>
