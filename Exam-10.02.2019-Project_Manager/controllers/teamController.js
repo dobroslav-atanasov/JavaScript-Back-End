@@ -27,10 +27,12 @@ function getTeams(req, res) {
     userModel.findById(userId).then(user => {
         if (user !== null && user.roles === 'Admin') {
             const isAdmin = true;
-            userModel.find({}).then(users => {
-                teamModel.find({}).then(teams => {
-                    res.render('teams-admin.hbs', { user, isAdmin, users, teams });
-                });
+
+            Promise.all([
+                userModel.find({}),
+                teamModel.find({})
+            ]).then(([users, teams]) => {
+                res.render('teams-admin.hbs', { user, isAdmin, users, teams });
             });
             return;
         }
