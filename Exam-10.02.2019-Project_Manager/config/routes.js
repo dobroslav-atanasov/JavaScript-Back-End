@@ -4,6 +4,8 @@ const teamController = require('../controllers/teamController');
 const projectController = require('../controllers/projectController');
 
 module.exports = (app) => {
+    app.post('/leave/:id', teamController.leaveTeam);
+
     // Project
     app.post('/projects', projectController.postProjects);
     app.get('/projects', projectController.getProjects);
