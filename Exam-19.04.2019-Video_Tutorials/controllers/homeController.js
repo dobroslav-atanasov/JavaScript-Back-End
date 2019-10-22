@@ -6,7 +6,7 @@ function index(req, res) {
     userModel.findById(userId).then(user => {
         if (user !== null && user.roles === 'Admin') {
             const isAdmin = true;
-            res.render('home.hbs', { user, isAdmin });
+            res.render('home-admin.hbs', { user, isAdmin });
             return;
         }
         res.render('home.hbs', { user });

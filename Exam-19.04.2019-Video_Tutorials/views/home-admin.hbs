@@ -6,7 +6,7 @@
     <title>Express Retake Exam January 2019</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link href="./../static/site.css" type="text/css" rel="stylesheet">
+    <link href="/css/site.css" type="text/css" rel="stylesheet">
 </head>
 
 <body>
@@ -17,15 +17,15 @@
             <ul class="navbar-nav ml-auto">
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Home </a>
+                    <a class="nav-link" href="/">Home </a>
                 </li>
 
                 <li class="nav-link">
-                    Welcome, Admin
+                    Welcome, {{user.username}}
                 </li>
 
                 <li class="nav-item">
-                    <form id="logout-form" action="/user/logout" method="post"></form>
+                    <form id="logout-form" action="/logout" method="get"></form>
                     <a class="nav-link" href="javascript:document.getElementById('logout-form').submit()">Logout</a>
                 </li>
 
@@ -35,7 +35,7 @@
         <main>
             <div class="row">
                 <div class="col text-center">
-                    <a href="#"><button type="button" class="btn btn-primary btn-lg">Create Course</button></a>
+                    <a href="/create-course"><button type="button" class="btn btn-primary btn-lg">Create Course</button></a>
                 </div>
             </div>
 
