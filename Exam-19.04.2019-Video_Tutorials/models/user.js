@@ -4,21 +4,34 @@ const userSchema = new mongoose.Schema({
     username: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
+        minlength: [5, 'Username should be at least 5 symbols!'],
+        validate: [
+            {
+                validator: (v) => {
+                    return /^[a-zA-Z0-9]+$/.test(v);
+                },
+                message: props => `${props.value} is not a valid username!`
+            }
+        ]
     },
     password: {
         type: String,
-        required: true
+        required: true,
+        minlength: [5, 'Password should be at least 5 symbols!'],
+        validate: [
+            {
+                validator: (v) => {
+                    return /^[a-zA-Z0-9]+$/.test(v);
+                },
+                message: props => `The password is not valid!`
+            }
+        ]
     },
     enrolledCourses: [{
         type: mongoose.Types.ObjectId,
         ref: 'Course'
-    }],
-    roles: {
-        type: String,
-        enum: ['User', 'Admin'],
-        default: 'User'
-    }
+    }]
 });
 
 userSchema.methods = {

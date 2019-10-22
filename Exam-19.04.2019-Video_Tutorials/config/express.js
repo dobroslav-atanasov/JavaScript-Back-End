@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser');
 
 module.exports = (app) => {
     app.use(cookieParser());
-    app.engine('.hbs', handlebars({ extname: '.hbs', defaultLayout: false }));
+    app.engine('.hbs', handlebars({ extname: '.hbs', defaultLayout: false, partialsDir: __basedir + '/views/partials' }));
     app.use(bodyParser.urlencoded({ extended: false }));
     app.use(express.static(path.resolve(__basedir, 'static')));
     app.set('views', path.resolve(__basedir, 'views'));
