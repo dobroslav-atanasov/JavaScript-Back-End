@@ -38,9 +38,24 @@
             </ul>
         </nav>
 
-        {{#if error}}
+        {{#if error.courseExist}}
         <section class="notifications">
-            <p class="notification-message">{{error}}</p>
+            <p class="notification-message">{{error.courseExist}}</p>
+        </section>
+        {{/if}}
+        {{#if error.title}}
+        <section class="notifications">
+            <p class="notification-message">{{error.title.message}}</p>
+        </section>
+        {{/if}}
+        {{#if error.description}}
+        <section class="notifications">
+            <p class="notification-message">{{error.description.message}}</p>
+        </section>
+        {{/if}}
+        {{#if error.imageUrl}}
+        <section class="notifications">
+            <p class="notification-message">{{error.imageUrl.message}}</p>
         </section>
         {{/if}}
 

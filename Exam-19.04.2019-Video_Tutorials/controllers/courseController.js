@@ -11,13 +11,39 @@ function getCreateCourse(req, res) {
 
 function postCreateCourse(req, res) {
     const { title, description, imageUrl, isPublic } = req.body;
-    if (isPublic !== undefined) {
-        courseModel.create({title, description, imageUrl, isPublic: true}).then(course => {
-            res.redirect('/');
-        }).catch(err => {
-            console.log(err);
-        });
-    }    
+
+    courseModel.findOne({title: title}).then(courseInDb => {
+        if (courseInDb !== null) {
+            res.render('create.hbs', {
+                error: {
+                    courseExist: `${courseInDb.title} course  already exist!`
+                }
+            });
+            return;
+        }
+
+        if (isPublic !== undefined) {
+            courseModel.create({title, description, imageUrl, isPublic: true}).then(course => {
+                res.redirect('/');
+            }).catch(err => {
+                if (err.name === 'ValidationError') {
+                    res.render('create.hbs', {
+                        error: err.errors
+                    });
+                }
+            });
+        } else {
+            courseModel.create({title, description, imageUrl, isPublic}).then(course => {
+                res.redirect('/');
+            }).catch(err => {
+                if (err.name === 'ValidationError') {
+                    res.render('create.hbs', {
+                        error: err.errors
+                    });
+                }
+            });
+        }
+    });    
 }
 
 module.exports = {
