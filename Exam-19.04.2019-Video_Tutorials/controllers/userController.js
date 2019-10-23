@@ -52,14 +52,17 @@ function getLogin(req, res) {
 
 function postLogin(req, res) {
     const { username, password } = req.body;
-    userModel.findOne({ username })
-        .then(user => Promise.all([user, user.matchPassword(password)]))
-        .then(([user, isMatch]) => {
+    userModel.findOne({ username }).then(user => {
+        if (user === null) {
+            res.render('login.hbs', {
+                message: 'Invalid username or password!'
+            });
+            return;
+        } else {
+            const isMatch = user.matchPassword(password);
             if (!isMatch) {
                 res.render('login.hbs', {
-                    error: {
-                        loginError: 'Invalid username or password!'
-                    }
+                    message: 'Invalid username or password!'
                 });
                 return;
             }
@@ -67,16 +70,8 @@ function postLogin(req, res) {
             const jwtToken = jwt.create({ id: user.id });
             res.cookie('auth-token', jwtToken);
             res.redirect('/');
-        }).catch(err => {
-            if (!isMatch) {
-                res.render('login.hbs', {
-                    error: {
-                        loginError: 'Invalid username or password!'
-                    }
-                });
-                return;
-            }
-        });
+        }
+    });
 }
 
 function logout(req, res) {

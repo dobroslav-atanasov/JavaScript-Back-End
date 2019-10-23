@@ -21,7 +21,6 @@ const courseSchema = new mongoose.Schema({
     createAt: {
         type: Date,
         required: true,
-        default: Date.now()
     },
     creatorId: {
         type: String

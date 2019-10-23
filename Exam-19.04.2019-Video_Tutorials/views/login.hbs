@@ -38,9 +38,9 @@
             </ul>
         </nav>
 
-        {{#if error.loginError}}
+        {{#if message}}
         <section class="notifications">
-            <p class="notification-message">{{error.loginError}}</p>
+            <p class="notification-message">{{message}}</p>
         </section>
         {{/if}}
 
