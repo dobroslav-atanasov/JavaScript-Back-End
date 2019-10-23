@@ -5,25 +5,14 @@ const courseSchema = new mongoose.Schema({
         type: String,
         required: true,
         unique: true,
-        minlength: [4, 'Title should be at least 5 symbols long!']
     },
     description: {
         type: String,
         required: true,
-        minlength: [20, 'Description should be at least 20 symbols long!'],
-        maxlength: [50, 'Description is more than 50 symbols!']
     },
     imageUrl: {
         type: String,
         required: true,
-        validate: [
-            {
-                validator: (v) => {
-                    return v.startsWith('http://') || v.startsWith('https://');
-                },
-                message: props => `Image url should be start with http or https!`
-            }
-        ]
     },
     isPublic: {
         type: Boolean,
@@ -34,7 +23,10 @@ const courseSchema = new mongoose.Schema({
         required: true,
         default: Date.now()
     },
-    usersEnrolled: [{
+    creatorId: {
+        type: String
+    },
+    users: [{
         type: mongoose.Types.ObjectId,
         ref: 'User'
     }]

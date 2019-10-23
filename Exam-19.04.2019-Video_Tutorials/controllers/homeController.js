@@ -13,7 +13,7 @@ function index(req, res) {
     }
 
     if (userId === undefined) {
-        courseModel.find({}).sort({ usersEnrolled: -1 }).limit(3).then(courses => {
+        courseModel.find({}).sort({ users: -1 }).limit(3).then(courses => {
             res.render('home.hbs', { courses });
             return;
         });

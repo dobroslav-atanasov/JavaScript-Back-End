@@ -38,24 +38,9 @@
             </ul>
         </nav>
 
-        {{#if error.repeatPassword}}
+        {{#if message}}
         <section class="notifications">
-            <p class="notification-message">{{error.repeatPassword}}</p>
-        </section>
-        {{/if}}
-        {{#if error.password}}
-        <section class="notifications">
-            <p class="notification-message">{{error.password.message}}</p>
-        </section>
-        {{/if}}
-        {{#if error.username}}
-        <section class="notifications">
-            <p class="notification-message">{{error.username.message}}</p>
-        </section>
-        {{/if}}
-        {{#if error.usernameExist}}
-        <section class="notifications">
-            <p class="notification-message">{{error.usernameExist}}</p>
+            <p class="notification-message">{{message}}</p>
         </section>
         {{/if}}
 
@@ -63,7 +48,7 @@
             <form class="text-center border border-light p-5" action="/register" method="POST">
                 <div class="form-group">
                     <label for="username">Username</label>
-                    <input type="text" class="form-control" placeholder="Username" name="username" value="">
+                    <input type="text" class="form-control" placeholder="Username" name="username" value="{{oldBody.username}}">
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>

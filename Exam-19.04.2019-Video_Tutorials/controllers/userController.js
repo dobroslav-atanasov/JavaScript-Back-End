@@ -1,6 +1,7 @@
 const userModel = require('../models/user');
 const jwt = require('../common/jwt');
 const authentication = require('../common/authentication');
+const { validationResult } = require('express-validator');
 
 function getRegister(req, res) {
     const userId = authentication.checkForAuthentication(req, res);
@@ -13,9 +14,8 @@ function postRegister(req, res) {
     const { username, password, repeatPassword } = req.body;
     if (password !== repeatPassword) {
         res.render('register.hbs', {
-            error: {
-                repeatPassword: 'Your password and confirmation password do not match.'
-            }
+            message: 'Your password and confirmation password do not match.',
+            oldBody: req.body
         });
         return;
     }
@@ -23,21 +23,22 @@ function postRegister(req, res) {
     userModel.findOne({ username: username }).then(userInDb => {
         if (userInDb !== null) {
             res.render('register.hbs', {
-                error: {
-                    usernameExist: `${userInDb.username} username  already exist!`
-                }
+                message: `${userInDb.username} username  already exist!`,
+                oldBody: req.body
             });
             return;
         }
 
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.render('register.hbs', {
+                message: errors.array()[0].msg,
+                oldBody: req.body
+            });
+        }
+
         userModel.create({ username, password }).then(user => {
             res.redirect('/login');
-        }).catch(err => {
-            if (err.name === 'ValidationError') {
-                res.render('register.hbs', {
-                    error: err.errors
-                });
-            }
         });
     });
 }

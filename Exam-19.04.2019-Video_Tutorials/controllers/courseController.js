@@ -1,6 +1,7 @@
 const authentication = require('../common/authentication');
 const userModel = require('../models/user');
 const courseModel = require('../models/course');
+const { validationResult } = require('express-validator');
 
 function getCreateCourse(req, res) {
     const userId = authentication.checkForAuthentication(req, res);
@@ -12,38 +13,27 @@ function getCreateCourse(req, res) {
 function postCreateCourse(req, res) {
     const { title, description, imageUrl, isPublic } = req.body;
 
-    courseModel.findOne({title: title}).then(courseInDb => {
+    courseModel.findOne({ title: title }).then(courseInDb => {
         if (courseInDb !== null) {
             res.render('create.hbs', {
-                error: {
-                    courseExist: `${courseInDb.title} course  already exist!`
-                }
+                message: `${courseInDb.title} course  already exist!`,
+                oldBody: req.body
             });
             return;
         }
 
-        if (isPublic !== undefined) {
-            courseModel.create({title, description, imageUrl, isPublic: true}).then(course => {
-                res.redirect('/');
-            }).catch(err => {
-                if (err.name === 'ValidationError') {
-                    res.render('create.hbs', {
-                        error: err.errors
-                    });
-                }
-            });
-        } else {
-            courseModel.create({title, description, imageUrl, isPublic}).then(course => {
-                res.redirect('/');
-            }).catch(err => {
-                if (err.name === 'ValidationError') {
-                    res.render('create.hbs', {
-                        error: err.errors
-                    });
-                }
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.render('create.hbs', {
+                message: errors.array()[0].msg,
+                oldBody: req.body
             });
         }
-    });    
+
+        courseModel.create({ title, description, imageUrl, isPublic: isPublic !== undefined ? true : false }).then(course => {
+            res.redirect('/');
+        });
+    });
 }
 
 module.exports = {
