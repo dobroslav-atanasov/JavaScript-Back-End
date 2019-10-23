@@ -20,10 +20,25 @@ function postRegister(req, res) {
         return;
     }
 
-    userModel.create({ username, password }).then(user => {
-        res.redirect('/login');
-    }).catch(err => {
-        console.log(err);
+    userModel.findOne({ username: username }).then(userInDb => {
+        if (userInDb !== null) {
+            res.render('register.hbs', {
+                error: {
+                    usernameExist: `${userInDb.username} username  already exist!`
+                }
+            });
+            return;
+        }
+
+        userModel.create({ username, password }).then(user => {
+            res.redirect('/login');
+        }).catch(err => {
+            if (err.name === 'ValidationError') {
+                res.render('register.hbs', {
+                    error: err.errors
+                });
+            }
+        });
     });
 }
 

@@ -4,8 +4,8 @@ const courseController = require('../controllers/courseController');
 
 module.exports = (app) => {
     // Courses
-    app.get('/create-course', courseController.getCreateCourse);
-    app.post('/create-course', courseController.postCreateCourse);
+    app.get('/course/create', courseController.getCreateCourse);
+    app.post('/course/create', courseController.postCreateCourse);
 
     // Logout User
     app.get('/logout', userController.logout);
