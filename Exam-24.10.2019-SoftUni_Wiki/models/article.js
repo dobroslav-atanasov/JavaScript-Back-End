@@ -11,8 +11,8 @@ const articleSchema = new mongoose.Schema({
         required: true
     },
     articleAuthor: {
-        type: mongoose.Types.ObjectId,
-        ref: 'User'
+        type: String,
+        required: true
     },
     creationDate: {
         type: Date,

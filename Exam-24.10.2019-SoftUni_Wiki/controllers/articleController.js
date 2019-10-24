@@ -31,14 +31,23 @@ function postCreate(req, res) {
             });
         }
 
-        articleModel.create({ title, description, articleAuthor: userId, creationDate: Date.now()}).then(article => {
+        articleModel.create({ title, description, articleAuthor: userId, creationDate: Date.now() }).then(article => {
             res.redirect('/');
         });
     });
 }
 
 function getArticle(req, res) {
-    res.render('article.hbs');   
+    const articleId = req.params.id;
+    const userId = authentication.checkForAuthentication(req, res);
+
+    Promise.all([
+        userModel.findById(userId),
+        articleModel.findById(articleId)
+    ]).then(([user, article]) => {
+        const isCreator = userId === article.articleAuthor;
+        res.render('article.hbs', { user, article, isCreator });
+    });
 }
 
 module.exports = {
