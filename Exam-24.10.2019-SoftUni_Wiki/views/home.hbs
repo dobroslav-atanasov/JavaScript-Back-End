@@ -16,7 +16,7 @@
 
             <nav>
                 <a href="/">Main Page</a>
-                <a href="all-articles.html">All Articles</a>
+                <a href="/all-articles">All Articles</a>
                 <form>
                     <input type="text">
                     <input type="submit" value="Search">
@@ -40,7 +40,17 @@
                 <h1>Welcome to SoftUni Wiki!</h1>
                 <section id="featured">
                     <h2>Latests articles</h2>
+                    {{#each articles}}
                     <article>
+                        <h3>{{title}}</h3>
+                        <p>{{description}}...</p>
+                        <div class="controls">
+                            <a href="/article/{{id}}">Read more</a>
+                        </div>
+                    </article>
+                    {{/each}}
+
+                    {{!-- <article>
                         <h3>Astronomy</h3>
                         <p>
                             Astronomy is a natural science that studies celestial objects and phenomena. It applies
@@ -77,7 +87,7 @@
                         <div class="controls">
                             <a href="article.html">Read more</a>
                         </div>
-                    </article>
+                    </article> --}}
                 </section>
             </main>
             <footer>

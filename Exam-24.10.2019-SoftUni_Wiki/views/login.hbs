@@ -16,12 +16,14 @@
 
             <nav>
                 <a href="/">Main Page</a>
-                <a href="all-articles.html">All Articles</a>
+                <a href="/all-articles">All Articles</a>
                 <form>
                     <input type="text">
                     <input type="submit" value="Search">
                 </form>
-                <a href="create.html">Create New Article</a>
+                {{#if user}}
+                <a href="/create">Create New Article</a>
+                {{/if}}
             </nav>
         </aside>
         <div id="container">
@@ -36,6 +38,11 @@
             </header>
             <main>
                 <h1>Welcome to SoftUni Wiki!</h1>
+                {{#if message}}
+				<section id="notifications">
+				<p>{{message}}</p>
+				</section>
+                {{/if}}
                 <section>
                     <h2>Login</h2>
                     <div class="spacer">

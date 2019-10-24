@@ -1,5 +1,6 @@
 const homeController = require('../controllers/homeController');
 const userController = require('../controllers/userController');
+const articleController = require('../controllers/articleController');
 const courseController = require('../controllers/courseController');
 const courseValidator = require('../common/courseValidator');
 const userValidator = require('../common/userValidator');
@@ -7,6 +8,9 @@ const articleValidator = require('../common/articleValidator');
 
 module.exports = (app) => {
     // Courses
+    app.post('/create', articleValidator, articleController.postCreate);
+    app.get('/create', articleController.getCreate);
+
     // app.get('/enroll/:id', courseController.getEnroll);
     // app.get('/delete/:id', courseController.getDelete);
     // app.post('/edit/:id', courseValidator, courseController.postEdit);

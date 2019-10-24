@@ -1,6 +1,6 @@
 const authentication = require('../common/authentication');
 const userModel = require('../models/user');
-const courseModel = require('../models/course');
+const articleModel = require('../models/article');
 
 function index(req, res) {
     const userId = authentication.checkForAuthentication(req, res);
@@ -12,8 +12,10 @@ function index(req, res) {
         query = { ...query, title: { $regex: search } };
     }
 
-    userModel.findById(userId).then(user => {
-        res.render('home.hbs', { user });
+    articleModel.find(query).sort({ creationDate: -1 }).then(articles => {
+        userModel.findById(userId).then(user => {
+            res.render('home.hbs', { user, articles });
+        });
     });
 }
 
