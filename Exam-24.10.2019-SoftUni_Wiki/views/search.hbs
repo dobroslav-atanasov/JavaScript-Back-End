@@ -38,26 +38,21 @@
             </header>
             <main>
                 <h1>Welcome to SoftUni Wiki!</h1>
-                {{#if message}}
-				<section id="notifications">
-				<p>{{message}}</p>
-				</section>
-                {{/if}}
                 <section>
-                    <h2>Create new article</h2>
+                    <h2>Search results for: "{{search}}"</h2>
                     <div class="spacer">
-                        <form action="/create" method="POST">
-                            <label>Article title</label>
-                            <input type="text" class="title" name="title" value="{{oldBody.title}}">
-                            <label>Content</label>
-                            <textarea name="description">{{oldBody.description}}</textarea>
-                            <input type="submit" value="Submit">
-                        </form>
+                        <ul>
+                            {{#each articles}}
+                            <li>
+                                <a href="/article/{{id}}">{{title}}</a>
+                            </li>
+                            {{/each}}
+                        </ul>
                     </div>
                 </section>
             </main>
             <footer>
-                SoftUni Wiki &copy; 2018 - 2019
+                SoftUni Wiki &copy; 2018
             </footer>
         </div>
     </div>

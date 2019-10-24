@@ -1,24 +1,19 @@
 const homeController = require('../controllers/homeController');
 const userController = require('../controllers/userController');
 const articleController = require('../controllers/articleController');
-const courseController = require('../controllers/courseController');
-const courseValidator = require('../common/courseValidator');
 const userValidator = require('../common/userValidator');
 const articleValidator = require('../common/articleValidator');
 
 module.exports = (app) => {
-    // Courses
+    // Articles
+    app.get('/search', articleController.search);
+    app.get('/delete/:id', articleController.getDelete);
+    app.post('/edit/:id', articleValidator, articleController.postEdit);
+    app.get('/edit/:id', articleController.getEdit);
     app.get('/article/:id', articleController.getArticle);
     app.post('/create', articleValidator, articleController.postCreate);
     app.get('/create', articleController.getCreate);
-
-    // app.get('/enroll/:id', courseController.getEnroll);
-    // app.get('/delete/:id', courseController.getDelete);
-    // app.post('/edit/:id', courseValidator, courseController.postEdit);
-    // app.get('/edit/:id', courseController.getEdit);
-    // app.get('/details/:id', courseController.getDetails);
-    // app.get('/create', courseController.getCreateCourse);
-    // app.post('/create', courseValidator, courseController.postCreateCourse);
+    app.get('/all-articles', articleController.getAllArticles);
 
     // Logout User
     app.get('/logout', userController.logout);

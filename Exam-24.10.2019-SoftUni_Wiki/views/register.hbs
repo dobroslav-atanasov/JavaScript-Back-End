@@ -13,12 +13,11 @@
             <div class="center">
                 <img class="logo" src="/images/logo.png" alt="logo">
             </div>
-
             <nav>
                 <a href="/">Main Page</a>
                 <a href="/all-articles">All Articles</a>
-                <form>
-                    <input type="text">
+                <form action="/search" method="GET">
+                    <input type="text" name="search">
                     <input type="submit" value="Search">
                 </form>
                 {{#if user}}
