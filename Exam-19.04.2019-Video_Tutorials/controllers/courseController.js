@@ -68,21 +68,13 @@ function postEdit(req, res) {
     const courseId = req.params.id;
     const userId = authentication.checkForAuthentication(req, res);
 
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.render('edit.hbs', {
-            message: errors.array()[0].msg,
-            oldBody: req.body,
-            user: user
-        });
-    }
-
     userModel.findById(userId).then(user => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.render('edit.hbs', {
                 message: errors.array()[0].msg,
                 oldBody: req.body,
+                currentCourseId: courseId,
                 user: user
             });
         }

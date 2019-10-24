@@ -45,11 +45,15 @@
         {{/if}}
 
         <main>
+            {{#if oldBody}}
+            <form class="text-center border border-light p-5" action="/edit/{{currentCourseId}}" method="POST">
+            {{else}}
             <form class="text-center border border-light p-5" action="/edit/{{course.id}}" method="POST">
+            {{/if}}
                 <h1>Edit Course</h1>
                 <div class="form-group">
                     <label for="title">Course Title</label>
-                    {{#if oldBody.title}}
+                    {{#if oldBody}}
                     <input type="text" class="form-control" placeholder="Course name" value="{{oldBody.title}}" name="title">
                     {{else}}
                     <input type="text" class="form-control" placeholder="Course name" value="{{course.title}}" name="title">
@@ -57,7 +61,7 @@
                 </div>
                 <div class="form-group">
                     <label for="description">Course Description</label>
-                    {{#if oldBody.title}}
+                    {{#if oldBody}}
                     <textarea class="form-control" placeholder="Description" name="description">{{oldBody.description}}</textarea>
                     {{else}}
                     <textarea class="form-control" placeholder="Description" name="description">{{course.description}}</textarea>
@@ -65,7 +69,7 @@
                 </div>
                 <div class="form-group">
                     <label for="imageUrl">Image url</label>
-                    {{#if oldBody.title}}
+                    {{#if oldBody}}
                     <input type="text" class="form-control" placeholder="Image Url" value="{{oldBody.imageUrl}}" name="imageUrl">
                     {{else}}
                     <input type="text" class="form-control" placeholder="Image Url" value="{{course.imageUrl}}" name="imageUrl">
