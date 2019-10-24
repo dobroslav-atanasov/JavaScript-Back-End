@@ -36,19 +36,21 @@
             </header>
             <main>
                 <h1>Welcome to SoftUni Wiki!</h1>
+                {{#if message}}
 				<section id="notifications">
-				<p>Both passwords should be the same...</p>
+				<p>{{message}}</p>
 				</section>
+                {{/if}}
                 <section>
                     <h2>Register</h2>
                     <div class="spacer">
-                        <form>
+                        <form action="/register" method="POST">
                             <label>Username:</label>
-                            <input type="text">
+                            <input type="text" name="username" value="{{oldBody.username}}">
                             <label>Password:</label>
-                            <input type="password">
+                            <input type="password" name="password">
                             <label>Repeat password:</label>
-                            <input type="password">
+                            <input type="password" name="repeatPassword">
                             <input type="submit" value="Register">
                         </form>
                     </div>

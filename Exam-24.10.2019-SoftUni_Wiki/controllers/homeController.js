@@ -12,8 +12,9 @@ function index(req, res) {
         query = { ...query, title: { $regex: search } };
     }
 
-    res.render('home.hbs');
-    return;
+    userModel.findById(userId).then(user => {
+        res.render('home.hbs', { user });
+    });
 }
 
 module.exports = {
