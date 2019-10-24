@@ -37,7 +37,12 @@ function postCreate(req, res) {
     });
 }
 
+function getArticle(req, res) {
+    res.render('article.hbs');   
+}
+
 module.exports = {
     getCreate,
-    postCreate
+    postCreate,
+    getArticle
 }

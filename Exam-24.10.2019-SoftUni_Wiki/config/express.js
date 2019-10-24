@@ -6,7 +6,14 @@ const cookieParser = require('cookie-parser');
 
 module.exports = (app) => {
     app.use(cookieParser());
-    app.engine('.hbs', handlebars({ extname: '.hbs', defaultLayout: false, partialsDir: __basedir + '/views/partials' }));
+    app.engine('.hbs', handlebars({
+        extname: '.hbs', defaultLayout: false, partialsDir: __basedir + '/views/partials', helpers: {
+            trimString: function (text) { 
+                let parts = text.split(' ', 50);
+                return parts.join(' ');
+            },
+        }
+    }));
     app.use(bodyParser.urlencoded({ extended: false }));
     app.use(express.static(path.resolve(__basedir, 'static')));
     app.set('views', path.resolve(__basedir, 'views'));

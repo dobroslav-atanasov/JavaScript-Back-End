@@ -8,6 +8,7 @@ const articleValidator = require('../common/articleValidator');
 
 module.exports = (app) => {
     // Courses
+    app.get('/article/:id', articleController.getArticle);
     app.post('/create', articleValidator, articleController.postCreate);
     app.get('/create', articleController.getCreate);
 
