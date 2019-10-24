@@ -21,7 +21,9 @@
                     <input type="text">
                     <input type="submit" value="Search">
                 </form>
-                <a href="create.html">Create New Article</a>
+                {{#if user}}
+                <a href="/create">Create New Article</a>
+                {{/if}}
             </nav>
         </aside>
         <div id="container">

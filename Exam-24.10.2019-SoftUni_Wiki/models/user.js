@@ -10,9 +10,9 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    courses: [{
+    articles: [{
         type: mongoose.Types.ObjectId,
-        ref: 'Course'
+        ref: 'Article'
     }]
 });
 
