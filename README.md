@@ -9,9 +9,10 @@ SoftUni course JavaScript Back-End - September 2019: All tasks with their soluti
 - Intro to Node.js
 - Node.js Streams and Utilities
 - Express.js and Templating
-- NoSQL and MongoDB
+- NoSQL and MongoDB 
 - Session and Authentication
 - Validation and Error Handling
+
 
 ## Repository content:
 
