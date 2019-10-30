@@ -9,7 +9,7 @@ SoftUni course JavaScript Back-End - September 2019: All tasks with their soluti
 - Intro to Node.js
 - Node.js Streams and Utilities
 - Express.js and Templating
-- NoSQL and MongoDB
+- NoSQL and MongoDB 
 - Session and Authentication
 - Validation and Error Handling
 
@@ -29,4 +29,8 @@ SoftUni course JavaScript Back-End - September 2019: All tasks with their soluti
 |10 February 2019	|Project Manager	|[Description](https://github.com/dobroslav-atanasov/JavaScript-Back-End/tree/master/Resources/Exam-10.02.2019-Project_Manager-Old)	|[Solution](https://github.com/dobroslav-atanasov/JavaScript-Back-End/tree/master/Exam-10.02.2019-Project_Manager-Old)
 |22 October 2019	|Video Tutorials	|[Description](https://github.com/dobroslav-atanasov/JavaScript-Back-End/tree/master/Resources/Exam-22.10.2019-Video_Tutorials)		|[Solution](https://github.com/dobroslav-atanasov/JavaScript-Back-End/tree/master/Exam-22.10.2019-Video_Tutorials)
 |24 October 2019	|SoftUni Wiki		|[Description](https://github.com/dobroslav-atanasov/JavaScript-Back-End/tree/master/Resources/Exam-24.10.2019-SoftUni_Wiki)		|[Solution](https://github.com/dobroslav-atanasov/JavaScript-Back-End/tree/master/Exam-24.10.2019-SoftUni_Wiki)
+<<<<<<< .mine
 |26 October 2019	|Money Gone			|[Description](https://github.com/dobroslav-atanasov/JavaScript-Back-End/tree/master/Resources/Exam-26.10.2019-Money_Gone)			|[Solution](https://github.com/dobroslav-atanasov/JavaScript-Back-End/tree/master/Exam-26.10.2019-Money_Gone)
+=======
+|26 October 2019	|Money Gone			|[Description](https://github.com/dobroslav-atanasov/JavaScript-Back-End/tree/master/Resources/Exam-26.10.2019-Money_Gone)			|[Solution](https://github.com/dobroslav-atanasov/JavaScript-Back-End/tree/master/Exam-24.10.2019-SoftUni_Wiki)
+>>>>>>> .theirs
