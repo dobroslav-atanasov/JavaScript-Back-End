@@ -13,7 +13,6 @@ SoftUni course JavaScript Back-End - September 2019: All tasks with their soluti
 - Session and Authentication
 - Validation and Error Handling
 
-
 ## Repository content:
 
 > **Homeworks**
